@@ -4,25 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rawan Hatem</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 
 <body>
 
-    <h1>Rawan Hatem</h1>
+    <div id="readme-content"></div>
 
-    <h2>My Projects</h2>
-
-    <p>
-        <a href="./campaigns.html">🎬 Campaigns</a>
-    </p>
-
-    <p>
-        <a href="./scripts.html">✍️ Scripts</a>
-    </p>
-
-    <p>
-        <a href="./creative-ideas.html">💡 Creative Ideas</a>
-    </p>
+    <script>
+        fetch('./README.md')
+            .then(response => response.text())
+            .then(markdown => {
+                document.getElementById('readme-content').innerHTML =
+                    marked.parse(markdown);
+            });
+    </script>
 
 </body>
 </html>
