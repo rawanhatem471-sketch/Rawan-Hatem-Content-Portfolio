@@ -20,4 +20,3 @@ The delivery guy stands there confused, slaps his forehead, and says:
 **Delivery Guy:** يا حول الله!
 
 [View the related campaign →](https://rawanhatem471-sketch.github.io/campaign.html?file=Breadfast%20vs.%20Talabat%20%E2%80%94%20Spec%20Ad.md)
-
