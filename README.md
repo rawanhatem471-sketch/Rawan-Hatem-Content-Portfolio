@@ -5,8 +5,8 @@ Content Creator & Creative Thinker
 ## About Me
 
 I’m a Business Information Systems Student
-who is passionate about developing ideas, writing scripts, and creating engaging social media content. 
-obsessed with creating advertisements and turning creative ideas into engaging campaigns that capture people’s attention. 
+who is passionate about developing ideas, writing scripts, and creating engaging social media content
+obsessed with creating advertisements and turning creative ideas into engaging campaigns that capture people’s attention.
 
 
 ## Skills
