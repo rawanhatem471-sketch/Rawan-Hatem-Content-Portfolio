@@ -19,7 +19,6 @@ obsessed with creating advertisements and turning creative ideas into engaging c
 - Storytelling
 - Graphic Design
 - Digital Marketing
-- Problem solving
 
 
 ## Currently Exploring
