@@ -23,19 +23,12 @@
     Loading...
 </main>
 
+
 <script>
 
-    fetch('./README.md')
+    fetch('README.md')
 
-        .then(response => {
-
-            if (!response.ok) {
-                throw new Error('README.md not found');
-            }
-
-            return response.text();
-
-        })
+        .then(response => response.text())
 
         .then(markdown => {
 
@@ -112,6 +105,7 @@
                         'My Projects'
                     );
 
+
             if (projectsHeading) {
 
                 const projectList =
@@ -120,20 +114,27 @@
                 projectList.className =
                     'project-list';
 
+
                 let current =
                     projectsHeading.nextElementSibling;
 
 
+                const elementsToRemove =
+                    [];
+
+
                 while (current) {
 
-                    const next =
-                        current.nextElementSibling;
 
+                    if (
+                        current.tagName ===
+                        'H3'
+                    ) {
 
-                    if (current.tagName === 'H3') {
 
                         const projectName =
                             current.textContent.trim();
+
 
                         const description =
                             current.nextElementSibling;
@@ -155,6 +156,7 @@
                                 'campaigns.html';
                         }
 
+
                         else if (
                             projectName ===
                             'Scripts'
@@ -163,6 +165,7 @@
                             card.href =
                                 'scripts.html';
                         }
+
 
                         else if (
                             projectName ===
@@ -177,48 +180,61 @@
                         const title =
                             document.createElement('span');
 
+
                         title.textContent =
                             projectName;
 
 
-                        card.appendChild(title);
+                        card.appendChild(
+                            title
+                        );
 
 
                         if (
                             description &&
-                            description.tagName === 'P'
+                            description.tagName ===
+                            'P'
                         ) {
+
 
                             const descriptionText =
                                 document.createElement('p');
 
+
                             descriptionText.textContent =
                                 description.textContent;
+
 
                             card.appendChild(
                                 descriptionText
                             );
+
+
+                            elementsToRemove.push(
+                                description
+                            );
                         }
 
 
-                        projectList.appendChild(card);
+                        projectList.appendChild(
+                            card
+                        );
 
 
-                        current.remove();
-
-
-                        if (
-                            description &&
-                            description.tagName === 'P'
-                        ) {
-
-                            description.remove();
-                        }
+                        elementsToRemove.push(
+                            current
+                        );
                     }
 
 
-                    current = next;
+                    current =
+                        current.nextElementSibling;
                 }
+
+
+                elementsToRemove.forEach(
+                    element => element.remove()
+                );
 
 
                 projectsHeading.after(
@@ -228,9 +244,11 @@
 
         })
 
+
         .catch(error => {
 
             console.error(error);
+
 
             document.getElementById(
                 'readme-content'
@@ -246,3 +264,4 @@
 </body>
 
 </html>
+
