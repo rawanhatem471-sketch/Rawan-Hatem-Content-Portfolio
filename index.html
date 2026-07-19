@@ -62,78 +62,67 @@
                 }
 
 
-                /* =========================
-                   MY PROJECTS
-                ========================= */
+              /* =========================
+   MY PROJECTS
+========================= */
 
-                const projectsHeading = [...content.querySelectorAll('h2')]
-                    .find(h2 => h2.textContent.trim() === 'My Projects');
+const projectsHeading = [...content.querySelectorAll('h2')]
+    .find(h2 => h2.textContent.trim() === 'My Projects');
 
-                if (projectsHeading) {
+if (projectsHeading) {
 
-                    const projectList = document.createElement('div');
+    const projectList = document.createElement('div');
+    projectList.className = 'project-list';
 
-                    projectList.className = 'project-list';
+    const projectTitles = [...content.querySelectorAll('h3')];
 
-                    let current = projectsHeading.nextElementSibling;
+    projectTitles.forEach(titleElement => {
 
-                    while (current) {
+        const projectName = titleElement.textContent.trim();
 
-                        const next = current.nextElementSibling;
+        const description = titleElement.nextElementSibling;
 
-                        if (current.tagName === 'H3') {
+        const card = document.createElement('a');
 
-                            const projectName = current.textContent.trim();
+        card.className = 'project-card';
 
-                            const description = current.nextElementSibling;
+        if (projectName === 'Campaigns') {
+            card.href = 'campaigns.html';
+        }
 
-                            const card = document.createElement('a');
+        else if (projectName === 'Scripts') {
+            card.href = 'scripts.html';
+        }
 
-                            card.className = 'project-card';
+        else if (projectName === 'Creative_Ideas') {
+            card.href = 'creative-ideas.html';
+        }
 
-                            if (projectName === 'Campaigns') {
-                                card.href = 'campaigns.html';
-                            }
+        const title = document.createElement('span');
+        title.textContent = projectName;
 
-                            else if (projectName === 'Scripts') {
-                                card.href = 'scripts.html';
-                            }
+        card.appendChild(title);
 
-                            else if (projectName === 'Creative_Ideas') {
-                                card.href = 'creative-ideas.html';
-                            }
+        if (description && description.tagName === 'P') {
 
-                            const title = document.createElement('span');
+            const descriptionText = document.createElement('p');
 
-                            title.textContent = projectName;
+            descriptionText.textContent = description.textContent;
 
-                            card.appendChild(title);
+            card.appendChild(descriptionText);
+        }
 
-                            if (description && description.tagName === 'P') {
+        projectList.appendChild(card);
 
-                                const descriptionText =
-                                    document.createElement('p');
+        titleElement.remove();
 
-                                descriptionText.textContent =
-                                    description.textContent;
+        if (description && description.tagName === 'P') {
+            description.remove();
+        }
+    });
 
-                                card.appendChild(descriptionText);
-                            }
-
-                            projectList.appendChild(card);
-
-                            current.remove();
-
-                            if (description && description.tagName === 'P') {
-                                description.remove();
-                            }
-                        }
-
-                        current = next;
-                    }
-
-                    projectsHeading.after(projectList);
-                }
+    projectsHeading.after(projectList);
+} 
 
             })
             .catch(error => {
