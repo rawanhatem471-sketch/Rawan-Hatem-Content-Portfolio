@@ -65,99 +65,105 @@
                 }
 
 
-                /* =========================
-                   MY PROJECTS
-                ========================= */
+             /* =========================
+   MY PROJECTS
+========================= */
 
-                const projectsHeading = [...content.querySelectorAll('h2')]
-                    .find(h2 => h2.textContent.trim() === 'My Projects');
+const projectsHeading = [...content.querySelectorAll('h2')]
+    .find(h2 => h2.textContent.trim() === 'My Projects');
 
-                if (projectsHeading) {
+if (projectsHeading) {
 
-                    const projectList = document.createElement('div');
+    const projectList = document.createElement('div');
 
-                    projectList.className = 'project-list';
+    projectList.className = 'project-list';
 
-                    let current = projectsHeading.nextElementSibling;
-
-
-                    while (current) {
-
-                        const next = current.nextElementSibling;
+    let current = projectsHeading.nextElementSibling;
 
 
-                        if (current.tagName === 'H3') {
+    while (current) {
 
-                            const projectName =
-                                current.textContent.trim();
-
-                            const description =
-                                current.nextElementSibling;
+        const next = current.nextElementSibling;
 
 
-                            const card =
-                                document.createElement('a');
+        if (current.tagName === 'H3') {
 
-                            card.className =
-                                'project-card';
+            const projectName =
+                current.textContent.trim();
 
-
-                            if (projectName.includes('Campaigns')) {
-
-                                card.href =
-                                    'campaigns.html';
-                            }
-
-                            else if (projectName.includes('Scripts')) {
-
-                                card.href =
-                                    'scripts.html';
-                            }
-
-                            else if (projectName.includes('Creative_Ideas')) {
-
-                                card.href =
-                                    'creative-ideas.html';
-                            }
+            const description =
+                current.nextElementSibling;
 
 
-                            const title =
-                                document.createElement('span');
+            const card =
+                document.createElement('a');
 
-                            title.textContent =
-                                projectName;
-
-
-                            card.appendChild(title);
+            card.className =
+                'project-card';
 
 
-                            if (
-                                description &&
-                                description.tagName === 'P'
-                            ) {
+            if (projectName === 'Campaigns') {
+                card.href = 'campaigns.html';
+            }
 
-                                const descriptionText =
-                                    document.createElement('p');
+            else if (projectName === 'Scripts') {
+                card.href = 'scripts.html';
+            }
 
-                                descriptionText.textContent =
-                                    description.textContent;
-
-
-                                card.appendChild(
-                                    descriptionText
-                                );
-                            }
+            else if (projectName === 'Creative_Ideas') {
+                card.href = 'creative-ideas.html';
+            }
 
 
-                            projectList.appendChild(card);
-                        }
+            const title =
+                document.createElement('span');
+
+            title.textContent =
+                projectName;
 
 
-                        current = next;
-                    }
+            card.appendChild(title);
 
 
-                    projectsHeading.after(projectList);
+            if (
+                description &&
+                description.tagName === 'P'
+            ) {
+
+                const descriptionText =
+                    document.createElement('p');
+
+                descriptionText.textContent =
+                    description.textContent;
+
+                card.appendChild(
+                    descriptionText
+                );
+            }
+
+
+            projectList.appendChild(card);
+
+
+            /* حذف المحتوى الأصلي */
+
+            current.remove();
+
+            if (
+                description &&
+                description.tagName === 'P'
+            ) {
+                description.remove();
+            }
+        }
+
+
+        current = next;
+    }
+
+
+    projectsHeading.after(projectList);
+}  
                 }
 
             })
